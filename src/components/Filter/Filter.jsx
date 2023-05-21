@@ -5,8 +5,8 @@ import css from './Filter.module.css';
 class Filter extends Component {
   handleChange(e) {
     const { value } = e.currentTarget;
-    const { onChange } = this.props;
-    onChange && onChange(value);
+    const { onChangeFilter } = this.props;
+    onChangeFilter && onChangeFilter(value);
   }
   render() {
     return (
@@ -20,7 +20,7 @@ class Filter extends Component {
 
 Filter.propTypes = {
   contacts: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChangeFilter: PropTypes.func.isRequired,
 };
 
 export default Filter;

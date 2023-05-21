@@ -18,10 +18,14 @@ class ContactForm extends Component {
     onChangePhone && onChangePhone(value);
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+  };
+
   render() {
     return (
       <div>
-        <form className={css.form}>
+        <form className={css.form} onSubmit={this.handleSubmit}>
           <label className={css.label}>Name</label>
           <input
             className={css.input}
@@ -47,7 +51,11 @@ class ContactForm extends Component {
             required
           />
 
-          <button className={css.button} onClick={e => this.handleClick(e)}>
+          <button
+            type="submit"
+            className={css.button}
+            onClick={e => this.handleClick(e)}
+          >
             Add contacts
           </button>
         </form>

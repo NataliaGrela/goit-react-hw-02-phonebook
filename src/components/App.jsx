@@ -1,8 +1,8 @@
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import Filter from './Filter/Filter';
 
 class App extends Component {
   state = {
@@ -25,6 +25,7 @@ class App extends Component {
   handleFilter(filter) {
     this.setState({ filter });
   }
+
   handleAddContact() {
     !this.contactExists()
       ? this.setState({
@@ -44,7 +45,8 @@ class App extends Component {
     const contactIndex = this.state.contacts.findIndex(item => item.id === id);
     this.state.contacts.splice(contactIndex, 1);
     //  console.log(this.state.contacts)
-    this.setState({ contacts: [...this.state.contacts] });
+    // this.setState({ contacts: [...this.state.contacts] });
+    this.setState(prevState => ({ contacts: [...prevState.contacts] }));
   }
 
   contactExists() {
@@ -66,8 +68,8 @@ class App extends Component {
         <h2>Contacts</h2>
         <Filter
           contacts={this.state.contacts}
-          onChange={e => this.handleFilter(e)}
-        ></Filter>
+          onChangeFilter={e => this.handleFilter(e)}
+        />
         <ContactList
           filter={this.state.filter}
           contacts={this.state.contacts}
