@@ -4,29 +4,27 @@ import { Component } from 'react';
 
 class ContactList extends Component {
   render() {
-    let { contacts, filter } = this.props;
-    contacts = filter
+    const { contacts, filter } = this.props;
+    const filteredContacts = filter
       ? contacts.filter(item =>
           item.name.toUpperCase().startsWith(filter.toUpperCase())
         )
       : contacts;
+
+    const contactItems = filteredContacts.map(({ name, number, id }) => (
+      <div>
+        <ContactItem
+          name={name}
+          number={number}
+          id={id}
+          key={id}
+          onDelete={id => this.props.onDelete(id)}
+        ></ContactItem>
+      </div>
+    ));
     return (
       <div>
-        <ul>
-          {contacts &&
-            contacts.map(item => {
-              const { name, number, id } = item;
-              return (
-                <ContactItem
-                  name={name}
-                  number={number}
-                  id={id}
-                  key={id}
-                  onDelete={id => this.props.onDelete(id)}
-                ></ContactItem>
-              );
-            })}
-        </ul>
+        <ul>{contactItems}</ul>
       </div>
     );
   }

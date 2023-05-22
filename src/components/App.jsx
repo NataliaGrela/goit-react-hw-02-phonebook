@@ -74,7 +74,7 @@ class App extends Component {
           filter={this.state.filter}
           contacts={this.state.contacts}
           onDelete={id => this.handleDeleteContact(id)}
-        ></ContactList>
+        />
       </div>
     );
   }
