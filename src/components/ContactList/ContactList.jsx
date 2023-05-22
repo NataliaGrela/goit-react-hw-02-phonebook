@@ -10,21 +10,19 @@ class ContactList extends Component {
           item.name.toUpperCase().startsWith(filter.toUpperCase())
         )
       : contacts;
-
-    const contactItems = filteredContacts.map(({ name, number, id }) => (
-      <div>
-        <ContactItem
-          name={name}
-          number={number}
-          id={id}
-          key={id}
-          onDelete={id => this.props.onDelete(id)}
-        ></ContactItem>
-      </div>
-    ));
     return (
       <div>
-        <ul>{contactItems}</ul>
+        <ul>
+          {filteredContacts.map(contact => (
+            <ContactItem
+              name={contact.name}
+              number={contact.number}
+              id={contact.id}
+              key={contact.id}
+              onDelete={id => this.props.onDelete(id)}
+            />
+          ))}
+        </ul>
       </div>
     );
   }

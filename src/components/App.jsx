@@ -44,8 +44,6 @@ class App extends Component {
   handleDeleteContact(id) {
     const contactIndex = this.state.contacts.findIndex(item => item.id === id);
     this.state.contacts.splice(contactIndex, 1);
-    //  console.log(this.state.contacts)
-    // this.setState({ contacts: [...this.state.contacts] });
     this.setState(prevState => ({ contacts: [...prevState.contacts] }));
   }
 
@@ -55,7 +53,6 @@ class App extends Component {
     );
   }
   render() {
-    // console.log(this.state);
     return (
       <div className="container">
         <h1>Phonebook</h1>
@@ -63,7 +60,7 @@ class App extends Component {
           onAddContact={e => this.handleAddContact(e)}
           onChangeName={e => this.handleChangeName(e)}
           onChangePhone={e => this.handleChangePhone(e)}
-        ></ContactForm>
+        />
 
         <h2>Contacts</h2>
         <Filter
